@@ -21,7 +21,7 @@ CREATE TABLE `데이터베이스명`.`테이블명` (
   `필드명2` 타입명 속성
 )
 ```
-> ex
+
 
 ``` sql
 CREATE TABLE `test`.`employee` (
@@ -34,3 +34,13 @@ CREATE TABLE `test`.`employee` (
   PRIMARY KEY (`no`)
 );
 ```
+
+### alter table 
+> * 새롭게 추가된 컬럼은 테이블의 마지막 컬럼이 되며 컬럼의 위치를 지정할 수는 없다.
+
+
+``` sql
+alter table `test`.`employee`
+add age int;
+```
+
