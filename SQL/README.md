@@ -9,6 +9,9 @@ show databases;
 ``` sql
 create database [데이터베이스명];
 ```
+``` sql
+create database [데이터베이스명] default character set [인코딩];
+```
 
 ### 데이터베이스 삭제
 ``` sql
@@ -49,9 +52,9 @@ CREATE TABLE `test`.`employee` (
   `title` CHAR(20) NULL,
   `manager` INT NULL,
   `salary` INT NULL,
-  `dno` INT NULL,
-  PRIMARY KEY (`no`)
+  `dno` INT NULL
 );
+DEFAULT CHARACTER SET = utf8;
 ```
 
 ### drop table
@@ -86,4 +89,46 @@ drop age
 ``` sql
 alter table `test`.`employee`
 rename column 
+```
+
+## DML(데이터 조작어)
+
+### insert 문
+``` sql
+  insert into employee(`no`,`name`,`title`,`manager`,`salary`,`dno`)
+  values(2106,'김창섭','대리',1001,250000,2);
+```
+
+``` sql
+insert into employee(`no`,`name`,`title`,`manager`,`salary`,`dno`)
+  values (3426,'박영권','과장',4377,3000000,1),
+  (3011,'이수민','부장',4377,4000000,3),
+  (1003,'조민희','과장',4377,3000000,2),
+  (3427,'최종철','사원',3011,1500000,3),
+  (1365,'김상원','사원',2426,1500000,1),
+  (2106,'이성래','사장',null,5000000,2)
+  
+```
+
+### select 문
+``` sql
+select * from employee;
+```
+
+``` sql
+select name,title from employee;
+```
+
+``` sql
+select * from employee where salary >=3000000;
+```
+
+### update 문
+``` sql
+update employee set title='대리' where name='최종철'
+```
+
+### delete 문
+``` sql
+delete employee where name='이수민'
 ```
