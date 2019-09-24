@@ -216,45 +216,6 @@ where salary >=3000000 and salary <=4500000
 ```
 
 
-### 김창섭 또는 최종철이 속한 부서이면서 기획 부서의 부서번호를 검색하라
-``` sql
-select dno
-from employee
-where name='김창섭' or name='최종철'
-```
-
-``` sql
-select no 
-from department 
-where name='기획';
-```
-
-``` sql
-select dno 
-from employee
-where name='김창섭' or name='최종철' 
-and dno=(select no from department where name='기획')
-```
-
-### 소속된 직원이 한 명도 없는 부서의 부서번호를 검색하라.
-
-``` sql
-select DEPTNO 
-from department
-```
-
-``` sql
-select distinct DNO 
-from employee
-```
-
-``` sql
-select DEPTNO 
-from department 
-where DEPTNO not in (select distinct DNO from employee)
-```
-
-
 ### 동등 조인
 ``` sql
 select * 
