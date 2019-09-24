@@ -56,13 +56,7 @@ CREATE TABLE `test`.`employee` (
 );
 ```
 
-``` sql
-CREATE TABLE department(
-  DEPTNO INT NOT NULL,
-  DEPTNAME char(20) null,
-  FLOOR int null
-)
-```
+
 
 ### drop table
 > 테이블 삭제
@@ -106,25 +100,6 @@ rename column
   values(2106,'김창섭','대리',1001,250000,2);
 ```
 
-``` sql
-insert into employee(`EMPNO`,`EMPNAME`,`TITLE`,`MANAGER`,`SALARY`,`DNO`)
-  values (2106,'김창섭','대리',1001,250000,2),
-  (3426,'박영권','과장',4377,3000000,1),
-  (3011,'이수민','부장',4377,4000000,3),
-  (1003,'조민희','과장',4377,3000000,2),
-  (3427,'최종철','사원',3011,1500000,3),
-  (1365,'김상원','사원',2426,1500000,1),
-  (2106,'이성래','사장',null,5000000,2)
-  
-```
-
-``` sql
-insert into department
-values(1,'영업',8),
-(2,'기획',10),
-(3,'개발',9),
-(4,'총무',7)
-```
 
 ### select 문
 ``` sql
@@ -152,6 +127,49 @@ set title='대리' where name='최종철'
 ### delete 문
 ``` sql
 delete employee where name='이수민'
+```
+
+
+
+### 실습용 데이터 구축
+``` sql
+CREATE TABLE DEPARTMENT (
+	DEPTNO	INT	NOT NULL,
+	DEPTNAME	CHAR(10),
+	FLOOR		INT,
+	PRIMARY KEY(DEPTNO)
+);
+```
+
+``` sql
+INSERT INTO DEPARTMENT VALUES(1, '영업', 8);
+INSERT INTO DEPARTMENT VALUES(2, '기획', 10);
+INSERT INTO DEPARTMENT VALUES(3, '개발', 9);
+INSERT INTO DEPARTMENT VALUES(4, '총무', 7);
+```
+
+``` sql
+CREATE TABLE EMPLOYEE (
+	EMPNO	INT	NOT NULL,
+	EMPNAME	CHAR(10)	UNIQUE,
+	TITLE	CHAR(10)	DEFAULT '사원',
+	MANAGER	INT,
+	SALARY INT	CHECK (SALARY < 6000000),
+	DNO	INT DEFAULT 1 CHECK (DNO IN (1,2,3,4)),
+	PRIMARY KEY(EMPNO),
+	FOREIGN KEY(MANAGER) REFERENCES EMPLOYEE(EMPNO),
+	FOREIGN KEY(DNO) REFERENCES DEPARTMENT(DEPTNO) ON DELETE CASCADE
+);
+```
+
+``` sql
+INSERT INTO EMPLOYEE VALUES(4377, '이성래', '사장', NULL, 5000000, 2);
+INSERT INTO EMPLOYEE VALUES(3426, '박영권', '과장', 4377, 3000000, 1);
+INSERT INTO EMPLOYEE VALUES(3011, '이수민', '부장', 4377, 4000000, 3);
+INSERT INTO EMPLOYEE VALUES(3427, '최종철', '사원', 3011, 1500000, 3);
+INSERT INTO EMPLOYEE VALUES(1003, '조민희', '과장', 4377, 3000000, 2);
+INSERT INTO EMPLOYEE VALUES(2106, '김창섭', '대리', 1003, 2500000, 2);
+INSERT INTO EMPLOYEE VALUES(1365, '김상원', '사원', 3426, 1500000, 1);
 ```
 
 
