@@ -47,14 +47,21 @@ CREATE TABLE `데이터베이스명`.`테이블명` (
 
 ``` sql
 CREATE TABLE `test`.`employee` (
-  `no` INT NOT NULL,
-  `name` CHAR(20) NULL,
-  `title` CHAR(20) NULL,
-  `manager` INT NULL,
-  `salary` INT NULL,
-  `dno` INT NULL
+  `EMPNO` INT NOT NULL,
+  `EMPNAME` CHAR(20) NULL,
+  `TITLE` CHAR(20) NULL,
+  `MANAGER` INT NULL,
+  `SALARY` INT NULL,
+  `DNO` INT NULL
 );
-DEFAULT CHARACTER SET = utf8;
+```
+
+``` sql
+CREATE TABLE department(
+  DEPTNO INT NOT NULL,
+  DEPTNAME char(20) null,
+  FLOOR int null
+)
 ```
 
 ### drop table
@@ -95,7 +102,7 @@ rename column
 
 ### insert 문
 ``` sql
-  insert into employee(`no`,`name`,`title`,`manager`,`salary`,`dno`)
+  insert into employee(`EMPNO`,`EMPNAME`,`TITLE`,`MANAGER`,`SALARY`,`DNO`)
   values(2106,'김창섭','대리',1001,250000,2);
 ```
 
@@ -108,6 +115,14 @@ insert into employee(`no`,`name`,`title`,`manager`,`salary`,`dno`)
   (1365,'김상원','사원',2426,1500000,1),
   (2106,'이성래','사장',null,5000000,2)
   
+```
+
+``` sql
+insert into department
+values(1,'영업',8),
+(2,'기획',10),
+(3,'개발',9),
+(4,'총무',7)
 ```
 
 ### select 문
@@ -132,3 +147,35 @@ update employee set title='대리' where name='최종철'
 ``` sql
 delete employee where name='이수민'
 ```
+
+### 중복제거
+``` sql
+  select title from employee 
+```
+
+``` sql
+  select distinct title from employee
+```
+
+### 김창섭 또는 최종철이 속한 부서이면서 기획 부서의 부서번호를 검색하라
+``` sql
+select dno from employee
+where name='김창섭' or name='최종철'
+```
+
+``` sql
+select no from department where name='기획';
+```
+
+``` sql
+select dno from employee
+where name='김창섭' or name='최종철' 
+and dno=(select no from department where name='기획')
+```
+
+### 소속된 직원이 한 명도 없는 부서의 부서번호를 검색하라.
+
+``` sql
+  select no
+```
+
