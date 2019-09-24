@@ -128,20 +128,25 @@ values(1,'영업',8),
 
 ### select 문
 ``` sql
-select * from employee;
+select * 
+from employee;
 ```
 
 ``` sql
-select name,title from employee;
+select name,title 
+from employee;
 ```
 
 ``` sql
-select * from employee where salary >=3000000;
+select * 
+from employee 
+where salary >=3000000;
 ```
 
 ### update 문
 ``` sql
-update employee set title='대리' where name='최종철'
+update employee 
+set title='대리' where name='최종철'
 ```
 
 ### delete 문
@@ -149,27 +154,84 @@ update employee set title='대리' where name='최종철'
 delete employee where name='이수민'
 ```
 
+
+
 ### 중복제거
 ``` sql
-  select title from employee 
+select title 
+from employee 
 ```
 
 ``` sql
-  select distinct title from employee
+select distinct title 
+from employee
 ```
+
+### 2번 부서에 근무하는 사원들에 관한 모든 정보를 검색하라
+``` sql
+ select *
+ from employee
+ where dno=2
+```
+
+### 이씨성을 가진 사원들의 이름,직금,소속부서번호를 검색하라
+``` sql
+select EMPNAME,TITLE,DNO
+from employee
+where EMPNAME like '이%'
+```
+
+### 이름에 '민' 이 들어간 사원들의 이름,직금,소속부서번호를 검색하라
+``` sql
+select EMPNAME,TITLE,DNO
+from employee
+where EMPNAME like '%민%'
+```
+
+### 직급이 과장이면서 1번부서에 근무하는 사원들의 이름과 급여를 검색하라
+``` sql
+select EMPNAME,SALARY
+from employee
+where title='과장' and dno=1
+```
+
+### 직급이 과장이면서 1번부서에 속하지 않은 사원들의 이름과 급여를 검색하라
+``` sql
+select EMPNAME,SALARY
+from employee
+where title='과장' and dno=1
+```
+
+### 급여가 3000000원 이상이고 4500000원 이하인 사원들의 이름,직급,급여를 검색하라
+``` sql
+select EMPNAME,TITLE,SALARY
+from employee
+where salary between 3000000 and 4500000
+```
+
+``` sql
+select EMPNAME,TITLE,SALARY
+from employee
+where salary >=3000000 and salary <=4500000
+```
+
 
 ### 김창섭 또는 최종철이 속한 부서이면서 기획 부서의 부서번호를 검색하라
 ``` sql
-select dno from employee
+select dno
+from employee
 where name='김창섭' or name='최종철'
 ```
 
 ``` sql
-select no from department where name='기획';
+select no 
+from department 
+where name='기획';
 ```
 
 ``` sql
-select dno from employee
+select dno 
+from employee
 where name='김창섭' or name='최종철' 
 and dno=(select no from department where name='기획')
 ```
@@ -177,30 +239,47 @@ and dno=(select no from department where name='기획')
 ### 소속된 직원이 한 명도 없는 부서의 부서번호를 검색하라.
 
 ``` sql
-  select DEPTNO from department
+select DEPTNO 
+from department
 ```
 
 ``` sql
-  select distinct DNO from employee
+select distinct DNO 
+from employee
 ```
 
 ``` sql
-select DEPTNO from department 
+select DEPTNO 
+from department 
 where DEPTNO not in (select distinct DNO from employee)
 ```
 
 
 ### 동등 조인
 ``` sql
-select * from department as dep join employee as emp
+select * 
+from department as dep join employee as emp
 where dep.DEPTNO=emp.DNO
 ```
 
 ### 자연 조인
 ``` sql
-select * from employee natural join (select  DEPTNO as DNO,DEPTNAME,FLOOR from department) as dept
+select * 
+from employee natural join (select  DEPTNO as DNO,DEPTNAME,FLOOR from department) as dept
 ```
 
 ### 모든 사원들의 급여의 평균이 얼마인가?
 
-```급여의 평
+``` sql
+select avg(salary) as average_salary 
+from employee
+```
+
+### 각 부서별 사원들의 급여의 평균이 얼마인가?
+``` sql
+select department.DEPTNAME, avg(salary) as salary 
+from employee join department
+where employee.DNO=department.DEPTNO
+group by employee.dno
+```
+
