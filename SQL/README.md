@@ -107,8 +107,9 @@ rename column
 ```
 
 ``` sql
-insert into employee(`no`,`name`,`title`,`manager`,`salary`,`dno`)
-  values (3426,'박영권','과장',4377,3000000,1),
+insert into employee(`EMPNO`,`EMPNAME`,`TITLE`,`MANAGER`,`SALARY`,`DNO`)
+  values (2106,'김창섭','대리',1001,250000,2),
+  (3426,'박영권','과장',4377,3000000,1),
   (3011,'이수민','부장',4377,4000000,3),
   (1003,'조민희','과장',4377,3000000,2),
   (3427,'최종철','사원',3011,1500000,3),
@@ -176,6 +177,30 @@ and dno=(select no from department where name='기획')
 ### 소속된 직원이 한 명도 없는 부서의 부서번호를 검색하라.
 
 ``` sql
-  select no
+  select DEPTNO from department
 ```
 
+``` sql
+  select distinct DNO from employee
+```
+
+``` sql
+select DEPTNO from department 
+where DEPTNO not in (select distinct DNO from employee)
+```
+
+
+### 동등 조인
+``` sql
+select * from department as dep join employee as emp
+where dep.DEPTNO=emp.DNO
+```
+
+### 자연 조인
+``` sql
+select * from employee natural join (select  DEPTNO as DNO,DEPTNAME,FLOOR from department) as dept
+```
+
+### 모든 사원들의 급여의 평균이 얼마인가?
+
+```급여의 평
