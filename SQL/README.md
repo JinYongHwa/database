@@ -273,6 +273,23 @@ group by dno
 ```
 
 ### 평균급여가 250만원이 넘는 부서의  부서번호,평균급여,최대급여를 검색하라
+``` sql
+select dno,avg(salary) as salary_avg, max(salary) as salary_max
+from employee
+group by dno
+having salary_avg>=2500000
+```
+
+### 김창섭이 속한 부서거나 개발부서인 부서번호를 검색하라
+``` sql
+select dno
+from employee
+where empname='김창섭'
+union
+select deptno
+from department
+where deptname='개발'
+```
 
 ### 동등 조인
 ``` sql
