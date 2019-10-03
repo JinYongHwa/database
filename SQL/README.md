@@ -232,7 +232,47 @@ select EMPNAME,TITLE,SALARY
 from employee
 where salary >=3000000 and salary <=4500000
 ```
+### 1번부서나 3번부서의 사람들에 관한 모든 정보를 검색해라
+``` sql
+select * from employee
+where dno in (1,3)
+```
 
+### 직급이 과장인 사원들에 대하여 이름과 급여가 10%인상되었을때의 값을 검색해라
+``` sql
+select empname,salary,salary*1.1 as newsalary
+from employee
+where title='과장'
+```
+
+### 매니저가 없는사람을 검색 해라
+```
+select empno,empname,manager from employee
+where manager is null
+```
+
+### 2번부서에 근무하는사람들의 급여 직급 이름을 검색하여 오름차순으로 정렬하라
+``` sql
+select salary,title,empname
+from employee
+where dno=2
+order by salary asc
+```
+
+### 전체 사원의 평균 급여와 최대급여를 검색해라
+``` sql
+select avg(salary) as salary_average,max(salary) as salary_max
+from employee;
+```
+
+### 모든 사원들에 대해서 사원들이 속한 부서번호에 대해 그룹화 하고 각 부서마다 부서번호,평균급여,최대급여를 검색하라
+``` sql
+select dno,avg(salary) as salary_avg, max(salary) as salary_max
+from employee
+group by dno
+```
+
+### 평균급여가 250만원이 넘는 부서의  부서번호,평균급여,최대급여를 검색하라
 
 ### 동등 조인
 ``` sql
