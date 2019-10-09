@@ -319,3 +319,43 @@ where employee.DNO=department.DEPTNO
 group by employee.dno
 ```
 
+### 박영권과 같은 직급인 사원의 이름과 직급을 검색해라
+``` sql
+select empname,title
+from employee
+where title = (select title 
+	       from employee 
+	       where dno='박영권')
+```
+
+### 영업부나 개발부에 근무하는 사원의 이름을 검색해라
+``` sql
+select empname
+from employee e,department d 
+where d.deptno=e.dno and d.deptname in ('영업','개발')
+```
+
+``` sql
+select empname
+from employee
+where dno in (select deptno 
+	      from department 
+	      where deptname in ('영업','개발'))
+```
+
+``` sql
+select empname
+from employee e
+where exists (select * 
+	      from department d 
+	      where d.deptno=e.dno 
+	      and deptname in ('영업','개발'))
+```
+
+### 자신의 속한 부서의 평균급여보다 많은 급여를 받는 사원의 이름 부서번호 급여를 검색해라
+``` sql
+select empname,dno,salary from employee e
+where salary> (select avg(salary) 
+		from employee d 
+                where d.dno=e.dno)
+```
