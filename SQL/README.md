@@ -412,6 +412,14 @@ where exists (select *
 	      and deptname in ('영업','개발'))
 ```
 
+``` sql
+select a.empname
+from employee a,(select * 
+	      from department
+	      where deptname in ('영업','개발')) b
+where a.dno=b.deptno
+```
+
 ### 자신의 속한 부서의 평균급여보다 많은 급여를 받는 사원의 이름 부서번호 급여를 검색해라
 ``` sql
 select empname,dno,salary from employee e
