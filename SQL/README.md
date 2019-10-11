@@ -419,3 +419,11 @@ where salary> (select avg(salary)
 		from employee d 
                 where d.dno=e.dno)
 ```
+### 사원의 이름과 자신의 급여보다 많은사원의 수를 검색하라
+``` sql
+select empname,(
+select count(*) from employee b
+where a.salary<b.salary
+) count
+from employee a
+```
