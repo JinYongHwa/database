@@ -148,8 +148,8 @@ drop age
 
 > alter rename column
 ``` sql
-alter table `test`.`employee`
-rename column 
+alter table employee
+change column title t char(10);
 ```
 
 ## DML(데이터 조작어)
@@ -186,7 +186,7 @@ set title='대리' where name='최종철'
 
 ### delete 문
 ``` sql
-delete employee where name='이수민'
+delete from employee where name='이수민'
 ```
 
 
