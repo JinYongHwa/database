@@ -48,7 +48,7 @@ CREATE TABLE `데이터베이스명`.`테이블명` (
 ``` sql
 create table student(
 	no int auto_increment,
-	studentno int not null,
+	studentno int not null unique,
 	name varchar(10) not null default '',
 	PRIMARY KEY(no)
 );
@@ -56,6 +56,7 @@ create table student(
 - auto_increment : 이키워드가 붙은 필드는 데이터가 새로 생길때마다 자동증가된다
 - not null : 이키워드가 붙은 필드는 null 값을 허용하지않음
 - default : 이키워드가 붙은 필드에 값을 넣지않으면 자동으로 default 키워드 뒤에 있는값으로 채워진다
+- unique :  이키워드가 붙은 필드는 중복된 값을 허용하지 
 - primary key(필드명) : 이키워드로 설정된 필드는 중복을 허용하지 않고 데이터의 기본키가 
 
 ## MySQL에서 사용가능한 데이터 타입
