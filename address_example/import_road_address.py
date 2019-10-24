@@ -2,7 +2,7 @@ import MySQLdb
 
 db = MySQLdb.connect(host="localhost",    # your host, usually localhost
                      user="root",         # your username
-                     passwd="mjc123456",  # your password
+                     passwd="mjc1234",  # your password
                      db="address")
 
 cursor = db.cursor()
