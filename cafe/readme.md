@@ -16,7 +16,7 @@ create table `order`(
   method int,
   customerName char(20),
   date datetime,
-  foreign key(customerName) references customer(name)
+  foreign key(customerName) references customer(name),
   primary key(customerName,date)
 )
 ```
@@ -68,7 +68,7 @@ create table material(
 create table menu_material(
   menuId int,
   materialName char(20),
-  usage int,
+  `usage` int,
   foreign key(menuId) references menu(id),
   foreign key(materialName) references material(name)
 )
