@@ -38,9 +38,9 @@ create table schedule(
   trainerId char(20),
   memberId int,
   date char(6),
-  time char(2)
+  time char(2),
   foreign key(trainerId) references trainer(phone),
-  foreign key(memberId) references member(id),
+  foreign key(memberId) references `member`(number),
   primary key(trainerId,date,time)
 )
 ```
