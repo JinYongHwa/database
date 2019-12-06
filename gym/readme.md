@@ -17,6 +17,7 @@ create table weightHistory(
   weight double,
   fatRatio double,
   memberId int,
+  month char(6),
   foreign key(memberId) references `member`(number)
 )
 ```
