@@ -44,6 +44,7 @@ create table order_menu(
   orderDate datetime,
   orderCustomerName char(20),
   menuId int,
+  count int,
   foreign key(orderCustomerName,orderDate) references `order`(customerName,date),
   foreign key(menuId) references menu(id)
 )
