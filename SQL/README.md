@@ -192,6 +192,8 @@ delete from employee where name='이수민'
 
 
 ### 실습용 데이터 구축
+![image](https://github.com/JinYongHwa/database/raw/master/SQL/db.png)
+
 ``` sql
 CREATE TABLE DEPARTMENT (
 	DEPTNO	INT	NOT NULL,
