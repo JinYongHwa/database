@@ -223,6 +223,11 @@ CREATE TABLE EMPLOYEE (
 	FOREIGN KEY(DNO) REFERENCES DEPARTMENT(DEPTNO) ON DELETE CASCADE
 );
 ```
+### 외래키 제약조건 (Foreign key constraint)
+https://mariadb.com/kb/en/foreign-keys/
+
+https://docs.microsoft.com/ko-kr/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver15
+
 
 ``` sql
 INSERT INTO EMPLOYEE VALUES(4377, '이성래', '사장', NULL, 5000000, 2);
