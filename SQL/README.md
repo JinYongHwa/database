@@ -259,14 +259,14 @@ from employee
  where dno=2
 ```
 
-### 이씨성을 가진 사원들의 이름,직금,소속부서번호를 검색하라
+### 이씨성을 가진 사원들의 이름,직급,소속부서번호를 검색하라
 ``` sql
 select EMPNAME,TITLE,DNO
 from employee
 where EMPNAME like '이%'
 ```
 
-### 이름에 '민' 이 들어간 사원들의 이름,직금,소속부서번호를 검색하라
+### 이름에 '민' 이 들어간 사원들의 이름,직급,소속부서번호를 검색하라
 ``` sql
 select EMPNAME,TITLE,DNO
 from employee
